@@ -1,25 +1,13 @@
 
+main('nic', 'manic', 098, 765)
+
 // Function declaration
-function a(){
-    console.log(this)
-}
-
-//Function expression
-const greeting = function(){
-    console.log('greeting im a function epression')
-}
-
-// arrow functions
-const b = () => {
-    console.log(this)
+function main(x,y, ...rest) {
+  console.log(x, y)
+  console.log(rest)
+  console.log("=======")
+  console.log(arguments)
 }
 
 
-const testObj = {
-    a: "im a context",
-    c: function() {
-        console.log(this)
-    }
-}
-
-testObj.c()
+main(123,456,'rene', 'laverdure')
