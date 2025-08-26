@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 =======
 // list of features to add
 // type store with generics
@@ -84,4 +83,3 @@ function bindTextContent(elementId: string, selector: Function) {
   store.subscribe(render);
   render();
 }
->>>>>>> Stashed changes
