@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "npx tsc -w"
+    "start": "npx tsc -w",
+    "dev": "nodemon"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",

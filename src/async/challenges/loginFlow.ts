@@ -124,6 +124,7 @@ async function loginUserAsync(username, password, userId) {
 // loginUserAsync("rene", 123, 99).then(console.log);
 
 async function getFetch(ms = 5000) {
+  console.trace("inside fetch");
   let response = await fetch("https://jsonplaceholder.typicode.com/users/1");
   // let result = await response.json();
   let result = await new Promise((resovle) => {
@@ -164,7 +165,6 @@ async function fetchWithTimeout(fn: Function, ms: number) {
       reject("async task timeout, fail to get resource");
     }, ms);
   });
-
   return Promise.race([timer, fn()]);
 }
 
