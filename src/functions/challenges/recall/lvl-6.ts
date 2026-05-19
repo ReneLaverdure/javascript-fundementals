@@ -89,3 +89,5 @@ emitter.emit("greet", "rene");
 
 emitter.on("adder", adder);
 emitter.emit("adder", 5, 6);
+
+function state() {}

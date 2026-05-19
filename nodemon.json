@@ -1,5 +1,5 @@
 {
   "watch": ["src"],
   "ext": "ts",
-  "exec": "ts-node ./src/functions/challenges/recall/lvl-6.ts"
+  "exec": "ts-node ./src/array/main/lvl-3.ts"
 }
