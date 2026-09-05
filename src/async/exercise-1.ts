@@ -83,9 +83,7 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
 
 function withTimeoutPromise<T>(promise: Promise<T>, ms: number): Promise<T> {
   return new Promise<T>((resolve, reject) => {
-    const timeout = new Promise<T>((_, reject) => {
-      setTimeout(() => reject(new TimeoutError(ms)), ms);
-    });
+    const timeout = setTimeout(() => reject(new TimeoutError(ms)), ms);
 
     promise.then(
       (value) => {
@@ -117,4 +115,47 @@ async function retry<T>(fn: () => Promise<T>, attempts: number): Promise<T> {
     }
   }
   throw lastError;
+}
+
+async function testing() {
+  console.log("a");
+  await new Promise((res, rej) => setTimeout(() => {}, 1000));
+  console.log("b");
+}
+
+async function saveUserPara(users: User[]) {
+  await Promise.all(users.map((user) => user.save()));
+  console.log("done");
+}
+
+async function saveUsersSeq(users: User[]) {
+  for (const user of users) {
+    await user.save();
+  }
+  Promise.all(arr);
+  console.log("DONE");
+}
+
+async function buildDashboard(userId: string) {
+  try {
+    const results = await Promise.all([
+      getProfile(userId),
+      getOrders(userId),
+      getRecommendations(userId),
+    ]);
+    return render(results.profile, results.orders, results.recs);
+  } catch (e) {
+    throw e;
+  }
+}
+
+async function buildDashboard(userId: string): Promise<Dashboard> {
+  const profilePromise = getProfile(userId);
+  const ordersPromise = getOrders(userId);
+
+  const profile = await profilePromise;
+  const recsPromise = getRecommendations(userId, profile.preferences);
+
+  const [orders, recs] = await Promise.all([ordersPromise, recsPromise]);
+  return render(profile, orders, recs);
 }
